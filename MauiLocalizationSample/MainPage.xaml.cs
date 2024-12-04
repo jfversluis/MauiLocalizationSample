@@ -18,7 +18,7 @@ public partial class MainPage : ContentPage
 
 	private void OnCounterClicked(object sender, EventArgs e)
 	{
-        var switchToCulture = AppResources.Culture.TwoLetterISOLanguageName
+        var switchToCulture = LocalizationResourceManager.Instance.Culture.TwoLetterISOLanguageName
             .Equals("nl", StringComparison.InvariantCultureIgnoreCase) ?
             new CultureInfo("en-US") : new CultureInfo("nl-NL");
 
