@@ -27,17 +27,9 @@ public class TranslateExtension : BindableObject, IMarkupExtension<BindingBase> 
     }
 
     public string? TranslatedName
-    {
-        get
-        {
-            if (Name is string name
-                && LocalizationResourceManager.Instance[name] is string translatedName)
-            {
-                return String.Format(translatedName, new object[] { X0, X1 });
-            }
-            return null;
-        }
-    }
+        => (Name is string name && LocalizationResourceManager.Instance[name] is string translatedName)
+            ? String.Format(translatedName, new object[] { X0, X1 })
+            : null;
 
     public void OnTranslatedNameChanged() => OnPropertyChanged(nameof(TranslatedName));
 
