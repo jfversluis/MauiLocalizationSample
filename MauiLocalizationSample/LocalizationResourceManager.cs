@@ -28,9 +28,5 @@ namespace MauiLocalizationSample {
             => AppResources.ResourceManager.GetObject(resourceKey, Culture) ?? Array.Empty<byte>();
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public void SetCulture(CultureInfo culture) {
-            Culture = culture;
-        }
     }
 }

@@ -22,7 +22,7 @@ public partial class MainPage : ContentPage
             .Equals("nl", StringComparison.InvariantCultureIgnoreCase) ?
             new CultureInfo("en-US") : new CultureInfo("nl-NL");
 
-        LocalizationResourceManager.Instance.SetCulture(switchToCulture);
+        LocalizationResourceManager.Instance.Culture = switchToCulture;
 
         count++;
         OnPropertyChanged(nameof(count));
