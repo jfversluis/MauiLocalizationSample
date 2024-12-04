@@ -5,7 +5,7 @@ namespace MauiLocalizationSample;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+	public int count { get; set; } = 0;
 
     public LocalizationResourceManager LocalizationResourceManager
         => LocalizationResourceManager.Instance;
@@ -25,6 +25,7 @@ public partial class MainPage : ContentPage
         LocalizationResourceManager.Instance.SetCulture(switchToCulture);
 
         count++;
+        OnPropertyChanged(nameof(count));
 
 		CounterBtn.Text = String.Format(LocalizationResourceManager["Counter"].ToString(), count);
 

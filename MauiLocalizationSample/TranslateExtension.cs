@@ -28,7 +28,7 @@ public class TranslateExtension : BindableObject, IMarkupExtension<BindingBase> 
 
     public string? TranslatedName
         => (Name is string name && LocalizationResourceManager.Instance[name] is string translatedName)
-            ? String.Format(translatedName, new object[] { X0, X1 })
+            ? String.Format(translatedName, new object?[] { X0, X1 })
             : null;
 
     public void OnTranslatedNameChanged() => OnPropertyChanged(nameof(TranslatedName));
@@ -38,15 +38,13 @@ public class TranslateExtension : BindableObject, IMarkupExtension<BindingBase> 
         LocalizationResourceManager.Instance.CultureChanged += (s, e) => OnTranslatedNameChanged();
     }
 
-    public BindingBase ProvideValue(IServiceProvider serviceProvider) {
-        return new Binding {
+    public BindingBase ProvideValue(IServiceProvider serviceProvider)
+        => new Binding {
             Mode = BindingMode.OneWay,
             Path = nameof(TranslatedName),
             Source = this
         };
-    }
 
-    object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider) {
-        return ProvideValue(serviceProvider);
-    }
+    object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider)
+        => ProvideValue(serviceProvider);
 }
