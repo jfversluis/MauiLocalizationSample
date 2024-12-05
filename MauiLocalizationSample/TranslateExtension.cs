@@ -39,11 +39,11 @@ public class TranslateExtension : BindableObject, IMarkupExtension<BindingBase> 
     }
 
     public BindingBase ProvideValue(IServiceProvider serviceProvider)
-        => new Binding {
-            Mode = BindingMode.OneWay,
-            Path = nameof(TranslatedName),
-            Source = this
-        };
+        => Binding.Create<TranslateExtension, string?>(
+            static source => source.TranslatedName,
+            mode: BindingMode.OneWay,
+            source: this
+        );
 
     object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider)
         => ProvideValue(serviceProvider);
