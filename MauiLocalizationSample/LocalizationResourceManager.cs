@@ -8,17 +8,13 @@ namespace MauiLocalizationSample {
             Culture = CultureInfo.CurrentCulture;
         }
 
-        public event EventHandler CultureChanged;
-
         public CultureInfo Culture
         {
             get => CultureInfo.CurrentUICulture;
             set
             {
                 CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Culture)));
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Item"));
-                CultureChanged?.Invoke(this, EventArgs.Empty);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
             }
         }
 

@@ -35,7 +35,7 @@ public class TranslateExtension : BindableObject, IMarkupExtension<BindingBase> 
 
     public TranslateExtension()
     {
-        LocalizationResourceManager.Instance.CultureChanged += (s, e) => OnTranslatedNameChanged();
+        LocalizationResourceManager.Instance.PropertyChanged += (s, e) => OnTranslatedNameChanged();
     }
 
     public BindingBase ProvideValue(IServiceProvider serviceProvider)
