@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:lang="clr-namespace:MauiLocalizationSample.Resources.Languages"
              xmlns:local="clr-namespace:MauiLocalizationSample"
+             x:Name="mainPage"
+             x:DataType="local:MainPage"
              x:Class="MauiLocalizationSample.MainPage">
 
     <ScrollView>
@@ -38,6 +40,15 @@
             <Button
                 x:Name="CounterBtn"
                 Text="Click me"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Center" />
+
+            <Button
+                Text="{local:Translate Counter,
+                                       BindingContext={Reference mainPage},
+                                       x:DataType=local:MainPage,
+                                       X0={Binding count}}"
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />

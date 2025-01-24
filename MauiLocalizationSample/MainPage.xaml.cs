@@ -5,7 +5,7 @@ namespace MauiLocalizationSample;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+	public int count { get; set; } = 0;
 
     public LocalizationResourceManager LocalizationResourceManager
         => LocalizationResourceManager.Instance;
@@ -18,13 +18,14 @@ public partial class MainPage : ContentPage
 
 	private void OnCounterClicked(object sender, EventArgs e)
 	{
-        var switchToCulture = AppResources.Culture.TwoLetterISOLanguageName
+        var switchToCulture = LocalizationResourceManager.Instance.Culture.TwoLetterISOLanguageName
             .Equals("nl", StringComparison.InvariantCultureIgnoreCase) ?
             new CultureInfo("en-US") : new CultureInfo("nl-NL");
 
-        LocalizationResourceManager.Instance.SetCulture(switchToCulture);
+        LocalizationResourceManager.Instance.Culture = switchToCulture;
 
         count++;
+        OnPropertyChanged(nameof(count));
 
 		CounterBtn.Text = String.Format(LocalizationResourceManager["Counter"].ToString(), count);
 
